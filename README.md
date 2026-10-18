@@ -18,7 +18,7 @@ Open http://127.0.0.1:8000. Keep the terminal running; Ctrl+C stops it. Serve ov
 
 ## Controls
 
-Select a project portal to reveal its details and GitHub link. Pause ambience stops decorative motion; reduced-motion preferences disable transitions. Conventional project links work without JavaScript.
+Select a project portal to reveal its details and GitHub link. Use Previous/Next room to cycle destinations, Return to station or Escape to exit, and browser Back/Forward to retrace selections. A `?room=queue` URL opens a known room directly. Modified clicks retain ordinary link behavior. Pause ambience stops decorative motion and camera transforms; reduced-motion preferences override animation, including changes made while the page is open. Conventional project links work without JavaScript.
 
 ## Project structure
 
@@ -74,3 +74,4 @@ Use small, reviewable changes with a clear user benefit. Add model tests when be
 ## License
 
 A redistribution license has not yet been selected. Public visibility alone does not grant an open-source license.
+

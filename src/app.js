@@ -58,3 +58,4 @@ $('#motion').addEventListener('click', () => { paused = !paused; applyMotion(); 
 reduced.addEventListener('change', applyMotion);
 window.addEventListener('popstate', () => renderRoom(roomFromURL(location.href)));
 renderRoom(roomFromURL(location.href));
+

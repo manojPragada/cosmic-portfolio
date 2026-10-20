@@ -19,3 +19,4 @@ export function roomFromURL(value) {
   try { return selectProject(new URL(value, 'https://portfolio.invalid/').searchParams.get('room'))?.id ?? null; }
   catch { return null; }
 }
+

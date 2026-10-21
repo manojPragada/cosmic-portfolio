@@ -26,4 +26,13 @@ export function stationTilt(clientX, clientY, width, height, maximum = 2.5) {
   return {x:clamp(((clientY / height) - .5) * -2 * maximum), y:clamp(((clientX / width) - .5) * 2 * maximum)};
 }
 
+export function portalIndexForKey(current, key, count = projects.length) {
+  if (!Number.isInteger(current) || !Number.isInteger(count) || count < 1) return null;
+  if (key === 'Home') return 0;
+  if (key === 'End') return count - 1;
+  if (key === 'ArrowLeft') return (current - 1 + count) % count;
+  if (key === 'ArrowRight') return (current + 1) % count;
+  return null;
+}
+
 

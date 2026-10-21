@@ -1,4 +1,4 @@
-import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt } from './model.js';
+import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey } from './model.js';
 const $ = selector => document.querySelector(selector);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const portals = [...document.querySelectorAll('[data-room]')];
@@ -50,6 +50,12 @@ for (const portal of portals) portal.addEventListener('click', event => {
   if (!selectProject(portal.dataset.room) || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
   event.preventDefault(); lastPortal = portal;
   renderRoom(portal.dataset.room, { focus: true, updateURL: true });
+});
+for (const [index, portal] of portals.entries()) portal.addEventListener('keydown', event => {
+  const next = portalIndexForKey(index, event.key, portals.length);
+  if (next === null) return;
+  event.preventDefault(); portals[next].focus();
+  $('#navigation-status').textContent = `${portals[next].querySelector('strong').textContent} portal focused.`;
 });
 $('#previous-room').addEventListener('click', () => renderRoom(adjacentRoom(active, -1), { focus: true, updateURL: true }));
 $('#next-room').addEventListener('click', () => renderRoom(adjacentRoom(active, 1), { focus: true, updateURL: true }));

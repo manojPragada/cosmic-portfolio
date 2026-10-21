@@ -14,6 +14,8 @@
 
 ## Continuity
 
+2026-10-21: Added spatial Left/Right/Home/End portal navigation with live announcements plus a holographic connection beam tying the three rooms together. Keyboard behavior is model- and browser-tested without changing ordinary link semantics. Next: prototype a strictly optional WebGL enhancement behind capability and performance checks.
+
 2026-10-21: Added bounded fine-pointer station parallax and a cursor-following cinematic light as progressive enhancement. Touch, reduced-motion and paused states remain static; semantic links/navigation are unchanged. Model and real-browser coverage updated. Next: evaluate WebGL only if its fallback and mobile budget match this foundation.
 
 2026-10-20: Added repeatable Playwright regression checks and a public-repository-only CI workflow. Desktop, mobile and motion-enabled scenarios passed locally using Chromium 153; model tests and syntax checks passed. Screenshots generated locally for inspection. Earlier browser-unavailable notes below are historical. No deployment or live-provider validation performed. Next: expand browser coverage and review the existing PR before merging.

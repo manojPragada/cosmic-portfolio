@@ -13,6 +13,7 @@
 /* Fine-pointer parallax is progressive enhancement; navigation remains conventional. */
 .station{--tilt-x:0deg;--tilt-y:0deg;--light-x:50%;--light-y:45%}
 .station::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at var(--light-x) var(--light-y),color-mix(in srgb,var(--room-color,#77f4d2) 13%,transparent),transparent 28%)}
+.portals::before{content:'';position:absolute;left:8%;right:8%;top:50%;height:1px;background:linear-gradient(90deg,transparent,#77f4d288,#bca1ff88,#ffb77e88,transparent);box-shadow:0 0 18px #77f4d244;pointer-events:none}
 .station>.planet,.station>.orbit-line{transform:rotateX(var(--tilt-x)) rotateY(var(--tilt-y));transition:transform .25s ease-out}
 .paused .station>.planet,.paused .station>.orbit-line{transform:none;transition:none}
 @media(pointer:coarse){.station>.planet,.station>.orbit-line{transform:none}}

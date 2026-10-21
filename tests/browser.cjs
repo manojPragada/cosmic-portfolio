@@ -7,8 +7,11 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE_PATH||'playwright');
 const root=path.resolve(__dirname,'..');
 const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.geojson':'application/geo+json'};
 async function scenario(page,base,reduced){
-
-  await page.locator('[data-room="pufferfish"]').click();
+  const first=page.locator('[data-room="pufferfish"]');await first.focus();await page.keyboard.press('ArrowRight');
+  assert.equal(await page.locator('[data-room="recorder"]').evaluate(el=>el===document.activeElement),true);
+  await page.keyboard.press('End');assert.equal(await page.locator('[data-room="queue"]').evaluate(el=>el===document.activeElement),true);
+  await page.keyboard.press('Home');assert.equal(await first.evaluate(el=>el===document.activeElement),true);
+  await first.click();
   await page.waitForFunction(()=>document.querySelector('#room-title').textContent==='PufferFish');
   assert.equal(await page.locator('#room').evaluate(el=>el===document.activeElement),true);
   await page.locator('#next-room').click();assert.equal(await page.locator('#room-title').textContent(),'Flight Recorder');

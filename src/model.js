@@ -20,3 +20,10 @@ export function roomFromURL(value) {
   catch { return null; }
 }
 
+export function stationTilt(clientX, clientY, width, height, maximum = 2.5) {
+  if (![clientX, clientY, width, height, maximum].every(Number.isFinite) || width <= 0 || height <= 0 || maximum < 0) return {x:0,y:0};
+  const clamp = value => value === 0 ? 0 : Math.max(-maximum, Math.min(maximum, value));
+  return {x:clamp(((clientY / height) - .5) * -2 * maximum), y:clamp(((clientX / width) - .5) * 2 * maximum)};
+}
+
+

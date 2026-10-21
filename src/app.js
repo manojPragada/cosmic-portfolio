@@ -1,7 +1,8 @@
-import { selectProject, adjacentRoom, cameraFor, roomFromURL } from './model.js';
+import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt } from './model.js';
 const $ = selector => document.querySelector(selector);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const portals = [...document.querySelectorAll('[data-room]')];
+const station = $('#station');
 let paused = reduced.matches;
 let active = null;
 let lastPortal = null;
@@ -13,6 +14,7 @@ function applyMotion() {
   $('#motion').setAttribute('aria-pressed', String(stopped));
   const camera = cameraFor(active);
   $('#scene').style.transform = stopped ? 'none' : `translateX(${camera.x}%) rotateY(${camera.yaw}deg) scale(${camera.scale})`;
+  if (stopped) { station.style.setProperty('--tilt-x','0deg'); station.style.setProperty('--tilt-y','0deg'); }
 }
 function renderRoom(id, { focus = false, updateURL = false } = {}) {
   const project = selectProject(id);
@@ -55,7 +57,18 @@ function exitRoom() { if (active) renderRoom(null, { focus: true, updateURL: tru
 $('#exit-room').addEventListener('click', exitRoom);
 document.addEventListener('keydown', event => { if (event.key === 'Escape') exitRoom(); });
 $('#motion').addEventListener('click', () => { paused = !paused; applyMotion(); });
+station.addEventListener('pointermove', event => {
+  if (paused || reduced.matches || event.pointerType === 'touch') return;
+  const bounds = station.getBoundingClientRect();
+  const tilt = stationTilt(event.clientX - bounds.left, event.clientY - bounds.top, bounds.width, bounds.height);
+  station.style.setProperty('--tilt-x', tilt.x + 'deg');
+  station.style.setProperty('--tilt-y', tilt.y + 'deg');
+  station.style.setProperty('--light-x', ((event.clientX - bounds.left) / bounds.width * 100) + '%');
+  station.style.setProperty('--light-y', ((event.clientY - bounds.top) / bounds.height * 100) + '%');
+});
+station.addEventListener('pointerleave', () => { station.style.setProperty('--tilt-x','0deg'); station.style.setProperty('--tilt-y','0deg'); });
 reduced.addEventListener('change', applyMotion);
 window.addEventListener('popstate', () => renderRoom(roomFromURL(location.href)));
 renderRoom(roomFromURL(location.href));
+
 

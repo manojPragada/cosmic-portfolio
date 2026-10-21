@@ -63,6 +63,8 @@ Node's built-in test runner checks model behavior. The check script validates Ja
 
 ## Accessibility and performance
 
+Fine-pointer devices receive a subtle bounded perspective response and cursor-following station light. It is decorative only: touch does not activate it, pausing ambience resets it, and reduced-motion users receive the static fallback. Project rooms remain ordinary links and the conventional archive remains available without JavaScript.
+
 Semantic controls, visible keyboard focus, a skip link, responsive layouts and reduced-motion CSS are included. Decorative motion is pausable where present. No autoplay audio, analytics or external font requests. Browser-based interfaces require JavaScript except for the portfolio's conventional project links. An automated accessibility audit has not been completed.
 
 ## Data, assets and limitations
@@ -90,5 +92,6 @@ Use small, reviewable changes with a clear user benefit. Add model tests when be
 ## License
 
 A redistribution license has not yet been selected. Public visibility alone does not grant an open-source license.
+
 
 

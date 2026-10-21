@@ -17,6 +17,11 @@ async function scenario(page,base,reduced){
   await page.locator('#next-room').click();await page.goBack();assert.equal(await page.locator('#room-title').textContent(),'Queue Lab');
   await page.keyboard.press('Escape');assert.equal(await page.locator('#room-controls').isVisible(),false);
   if(reduced)assert.equal(await page.locator('#motion').isDisabled(),true);
+  else{
+    const station=page.locator('#station');await station.hover({position:{x:100,y:100}});
+    assert.notEqual(await station.evaluate(el=>el.style.getPropertyValue('--tilt-x')),'');
+    await page.locator('#motion').click();assert.equal(await station.evaluate(el=>el.style.getPropertyValue('--tilt-x')),'0deg');
+  }
 
 }
 async function main(){
@@ -58,3 +63,4 @@ async function main(){
   }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
+

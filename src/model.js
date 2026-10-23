@@ -34,5 +34,8 @@ export function portalIndexForKey(current, key, count = projects.length) {
   if (key === 'ArrowRight') return (current + 1) % count;
   return null;
 }
+export function shouldEnhanceScene({reducedMotion=false,width=0,deviceMemory=null,webgl=true}={}) {
+  return !reducedMotion&&webgl&&Number.isFinite(width)&&width>=800&&(deviceMemory===null||deviceMemory>=4);
+}
 
 

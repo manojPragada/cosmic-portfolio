@@ -17,4 +17,5 @@
 .station>.planet,.station>.orbit-line{transform:rotateX(var(--tilt-x)) rotateY(var(--tilt-y));transition:transform .25s ease-out}
 .paused .station>.planet,.paused .station>.orbit-line{transform:none;transition:none}
 @media(pointer:coarse){.station>.planet,.station>.orbit-line{transform:none}}
+.webgl-stars{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.72}.scene,.station-bottom{z-index:1}.scene{position:absolute}
 

@@ -1,4 +1,5 @@
-import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey } from './model.js';
+import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, shouldEnhanceScene } from './model.js';
+import { createStarfield } from './starfield.js';
 const $ = selector => document.querySelector(selector);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const portals = [...document.querySelectorAll('[data-room]')];
@@ -6,6 +7,11 @@ const station = $('#station');
 let paused = reduced.matches;
 let active = null;
 let lastPortal = null;
+const canvas=document.createElement('canvas');canvas.id='webgl-stars';canvas.className='webgl-stars';canvas.setAttribute('aria-hidden','true');station.prepend(canvas);
+let starfield=null;
+if(shouldEnhanceScene({reducedMotion:reduced.matches,width:innerWidth,deviceMemory:navigator.deviceMemory??null,webgl:Boolean(window.WebGLRenderingContext)})){
+  try{starfield=createStarfield(canvas);canvas.hidden=!starfield;}catch{canvas.hidden=true;}
+}else canvas.hidden=true;
 function applyMotion() {
   const stopped = paused || reduced.matches;
   document.body.classList.toggle('paused', stopped);
@@ -15,6 +21,7 @@ function applyMotion() {
   const camera = cameraFor(active);
   $('#scene').style.transform = stopped ? 'none' : `translateX(${camera.x}%) rotateY(${camera.yaw}deg) scale(${camera.scale})`;
   if (stopped) { station.style.setProperty('--tilt-x','0deg'); station.style.setProperty('--tilt-y','0deg'); }
+  starfield?.pause(stopped);
 }
 function renderRoom(id, { focus = false, updateURL = false } = {}) {
   const project = selectProject(id);
@@ -73,7 +80,7 @@ station.addEventListener('pointermove', event => {
   station.style.setProperty('--light-y', ((event.clientY - bounds.top) / bounds.height * 100) + '%');
 });
 station.addEventListener('pointerleave', () => { station.style.setProperty('--tilt-x','0deg'); station.style.setProperty('--tilt-y','0deg'); });
-reduced.addEventListener('change', applyMotion);
+reduced.addEventListener('change',()=>{if(reduced.matches&&starfield){starfield.destroy();starfield=null;canvas.hidden=true;}applyMotion();});
 window.addEventListener('popstate', () => renderRoom(roomFromURL(location.href)));
 renderRoom(roomFromURL(location.href));
 

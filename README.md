@@ -63,13 +63,13 @@ Node's built-in test runner checks model behavior. The check script validates Ja
 
 ## Accessibility and performance
 
-Fine-pointer devices receive a subtle bounded perspective response and cursor-following station light. It is decorative only: touch does not activate it, pausing ambience resets it, and reduced-motion users receive the static fallback. Project rooms remain ordinary links and the conventional archive remains available without JavaScript.
+Fine-pointer devices receive a subtle bounded perspective response and cursor-following station light. Wide, capable devices may also receive a dependency-free raw-WebGL depth starfield. It is created only at 800px+, with at least 4 GB device memory when that signal exists, WebGL support, and no reduced-motion preference. CSS stars are always the fallback. Pausing ambience stops rendering; project rooms remain ordinary links and the conventional archive remains available without JavaScript.
 
 Semantic controls, visible keyboard focus, a skip link, responsive layouts and reduced-motion CSS are included. Decorative motion is pausable where present. No autoplay audio, analytics or external font requests. Browser-based interfaces require JavaScript except for the portfolio's conventional project links. An automated accessibility audit has not been completed.
 
 ## Data, assets and limitations
 
-CSS perspective and transforms provide a lightweight 3D illusion, not a WebGL world or free-roaming camera. Three linked project descriptions reflect their public CLI foundations. No invented clients, qualifications or testimonials. React/TypeScript, actual 3D assets and company showcase examples are not implemented yet.
+CSS perspective and transforms provide the navigable 3D illusion; optional raw WebGL adds decorative stars only, not a free-roaming camera or asset scene. Three linked project descriptions reflect their public repositories. No invented clients, qualifications or testimonials. React/TypeScript, actual 3D assets and company showcase examples are not implemented yet.
 
 All graphics and synthetic fixtures are original code in this repository. No third-party geographic dataset or media assets are bundled. No external API terms are relied upon in this prototype. Provider adapters will be documented and attributed before use.
 

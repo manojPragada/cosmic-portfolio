@@ -7,6 +7,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE_PATH||'playwright');
 const root=path.resolve(__dirname,'..');
 const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.geojson':'application/geo+json'};
 async function scenario(page,base,reduced){
+  assert.equal(await page.locator('#webgl-stars').count(),1);if(reduced)assert.equal(await page.locator('#webgl-stars').isVisible(),false);
   const first=page.locator('[data-room="pufferfish"]');await first.focus();await page.keyboard.press('ArrowRight');
   assert.equal(await page.locator('[data-room="recorder"]').evaluate(el=>el===document.activeElement),true);
   await page.keyboard.press('End');assert.equal(await page.locator('[data-room="queue"]').evaluate(el=>el===document.activeElement),true);

@@ -9,10 +9,12 @@
 ## Next
 
 - [x] Add CSS room geometry, per-room camera poses and station return controls
-- [ ] Evaluate Three.js progressive enhancement with a non-WebGL fallback
+- [x] Evaluate WebGL progressive enhancement and ship a dependency-free, budget-gated starfield with CSS fallback
 - [ ] Add a clearly fictional motorcycle company showcase under examples/
 
 ## Continuity
+
+2026-10-22: Added a strictly decorative raw-WebGL depth starfield only on wide, capable, non-reduced-motion devices. CSS stars remain the universal fallback; low-memory/mobile/reduced-motion users never create a GL context. This avoids a Three.js payload for one lightweight effect. Next: fictional motorcycle showcase under `examples/`.
 
 2026-10-21: Added spatial Left/Right/Home/End portal navigation with live announcements plus a holographic connection beam tying the three rooms together. Keyboard behavior is model- and browser-tested without changing ordinary link semantics. Next: prototype a strictly optional WebGL enhancement behind capability and performance checks.
 

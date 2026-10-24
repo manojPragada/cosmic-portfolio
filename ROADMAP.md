@@ -10,9 +10,11 @@
 
 - [x] Add CSS room geometry, per-room camera poses and station return controls
 - [x] Evaluate WebGL progressive enhancement and ship a dependency-free, budget-gated starfield with CSS fallback
-- [ ] Add a clearly fictional motorcycle company showcase under examples/
+- [x] Add a clearly fictional motorcycle company showcase under examples/
 
 ## Continuity
+
+2026-10-23: Added VOLTAGE, a standalone fictional electric-motorcycle landing-page study under `examples/voltage/`, using original CSS artwork, responsive layout and explicit non-product disclaimers. Next: add architecture and creative-studio showcases only if each can maintain this separation and accessibility baseline.
 
 2026-10-22: Added a strictly decorative raw-WebGL depth starfield only on wide, capable, non-reduced-motion devices. CSS stars remain the universal fallback; low-memory/mobile/reduced-motion users never create a GL context. This avoids a Three.js payload for one lightweight effect. Next: fictional motorcycle showcase under `examples/`.
 

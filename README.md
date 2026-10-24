@@ -71,7 +71,7 @@ Semantic controls, visible keyboard focus, a skip link, responsive layouts and r
 
 CSS perspective and transforms provide the navigable 3D illusion; optional raw WebGL adds decorative stars only, not a free-roaming camera or asset scene. Three linked project descriptions reflect their public repositories. No invented clients, qualifications or testimonials. React/TypeScript, actual 3D assets and company showcase examples are not implemented yet.
 
-All graphics and synthetic fixtures are original code in this repository. No third-party geographic dataset or media assets are bundled. No external API terms are relied upon in this prototype. Provider adapters will be documented and attributed before use.
+All graphics and synthetic fixtures are original code in this repository. `examples/voltage/` is a clearly labelled fictional electric-motorcycle landing-page design study; its company, vehicle and claims are not real. No third-party geographic dataset or media assets are bundled. No external API terms are relied upon in this prototype. Provider adapters will be documented and attributed before use.
 
 ## Deployment
 

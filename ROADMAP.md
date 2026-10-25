@@ -11,8 +11,11 @@
 - [x] Add CSS room geometry, per-room camera poses and station return controls
 - [x] Evaluate WebGL progressive enhancement and ship a dependency-free, budget-gated starfield with CSS fallback
 - [x] Add a clearly fictional motorcycle company showcase under examples/
+- [x] Add a clearly fictional architecture studio showcase under examples/
 
 ## Continuity
+
+2026-10-24: Added ATELIER 27, a standalone fictional architecture-studio study with original CSS geometry, responsive editorial layout and explicit non-client/non-project labeling. Next: complete the design-lab trio with a distinctly different creative-studio showcase.
 
 2026-10-23: Added VOLTAGE, a standalone fictional electric-motorcycle landing-page study under `examples/voltage/`, using original CSS artwork, responsive layout and explicit non-product disclaimers. Next: add architecture and creative-studio showcases only if each can maintain this separation and accessibility baseline.
 

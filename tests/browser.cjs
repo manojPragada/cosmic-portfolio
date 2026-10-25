@@ -8,6 +8,7 @@ const root=path.resolve(__dirname,'..');
 const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.geojson':'application/geo+json'};
 async function scenario(page,base,reduced){
   assert.equal(await page.locator('#voltage-showcase').getAttribute('href'),'examples/voltage/');
+  assert.equal(await page.locator('#atelier-showcase').getAttribute('href'),'examples/atelier/');
   assert.equal(await page.locator('#webgl-stars').count(),1);if(reduced)assert.equal(await page.locator('#webgl-stars').isVisible(),false);
   const first=page.locator('[data-room="pufferfish"]');await first.focus();await page.keyboard.press('ArrowRight');
   assert.equal(await page.locator('[data-room="recorder"]').evaluate(el=>el===document.activeElement),true);
@@ -31,6 +32,8 @@ async function scenario(page,base,reduced){
   await page.goto(new URL('examples/voltage/index.html',base).href);await page.waitForLoadState('networkidle');
   assert.equal((await page.locator('h1').textContent()).replace(/\s+/g,''),'QUIETISATHREAT.');assert.match(await page.locator('body').textContent(),/FICTIONAL DESIGN STUDY/);
   if(reduced&&page.viewportSize().width===1440)await page.screenshot({path:path.join(root,'test-results','voltage-showcase.jpg'),type:'jpeg',quality:80,fullPage:true});
+  await page.goto(new URL('examples/atelier/index.html',base).href);await page.waitForLoadState('networkidle');assert.match(await page.locator('body').textContent(),/FICTIONAL DESIGN STUDY \/ 02/);assert.match(await page.locator('h1').textContent(),/SPACE/);
+  if(reduced&&page.viewportSize().width===1440)await page.screenshot({path:path.join(root,'test-results','atelier-showcase.jpg'),type:'jpeg',quality:80,fullPage:true});
 }
 async function main(){
   const server=http.createServer(async(req,res)=>{

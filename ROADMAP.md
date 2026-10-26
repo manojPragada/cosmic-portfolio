@@ -12,8 +12,11 @@
 - [x] Evaluate WebGL progressive enhancement and ship a dependency-free, budget-gated starfield with CSS fallback
 - [x] Add a clearly fictional motorcycle company showcase under examples/
 - [x] Add a clearly fictional architecture studio showcase under examples/
+- [x] Complete the fictional design-lab trio with a creative-studio showcase
 
 ## Continuity
+
+2026-10-25: Added KINETIC, a standalone fictional creative-studio study with original CSS poster art, maximalist responsive layout and explicit non-client/non-project labeling. The three-showcase design lab is complete. Next: link it from the portfolio surface, then deepen room transitions without weakening reduced-motion fallbacks.
 
 2026-10-24: Added ATELIER 27, a standalone fictional architecture-studio study with original CSS geometry, responsive editorial layout and explicit non-client/non-project labeling. Next: complete the design-lab trio with a distinctly different creative-studio showcase.
 

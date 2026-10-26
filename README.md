@@ -69,7 +69,7 @@ Semantic controls, visible keyboard focus, a skip link, responsive layouts and r
 
 ## Data, assets and limitations
 
-CSS perspective and transforms provide the navigable 3D illusion; optional raw WebGL adds decorative stars only, not a free-roaming camera or asset scene. Three linked project descriptions reflect their public repositories. No invented clients, qualifications or testimonials. React/TypeScript and imported 3D assets are not implemented; two clearly separated fictional design showcases are included as static examples.
+CSS perspective and transforms provide the navigable 3D illusion; optional raw WebGL adds decorative stars only, not a free-roaming camera or asset scene. Three linked project descriptions reflect their public repositories. No invented clients, qualifications or testimonials. React/TypeScript and imported 3D assets are not implemented; three clearly separated fictional design showcases are included as static examples.
 
 All graphics and synthetic fixtures are original code in this repository. `examples/voltage/` is a clearly labelled fictional electric-motorcycle study; `examples/atelier/` is a fictional architecture-studio study. Their companies, products, projects and claims are not real. No third-party geographic dataset or media assets are bundled. No external API terms are relied upon in this prototype. Provider adapters will be documented and attributed before use.
 

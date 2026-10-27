@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-10-26: Moved KINETIC into semantic markup so the complete fictional design lab remains discoverable without JavaScript. Next: deepen room transitions without weakening no-script and reduced-motion paths.
+
 2026-10-25: Added KINETIC, a standalone fictional creative-studio study with original CSS poster art, maximalist responsive layout and explicit non-client/non-project labeling. The three-showcase design lab is complete. Next: link it from the portfolio surface, then deepen room transitions without weakening reduced-motion fallbacks.
 
 2026-10-24: Added ATELIER 27, a standalone fictional architecture-studio study with original CSS geometry, responsive editorial layout and explicit non-client/non-project labeling. Next: complete the design-lab trio with a distinctly different creative-studio showcase.

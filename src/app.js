@@ -4,7 +4,6 @@ const $ = selector => document.querySelector(selector);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const portals = [...document.querySelectorAll('[data-room]')];
 const station = $('#station');
-const designLab=document.createElement('section');designLab.className='panel';designLab.innerHTML='<p class="eyebrow">FICTIONAL DESIGN LAB / 03</p><h2>KINETIC</h2><p class="muted">A maximalist creative-studio study. Every studio, campaign and claim is fictional.</p><a class="button" id="kinetic-showcase" href="examples/kinetic/">Enter showcase ↗</a>';document.querySelector('main').append(designLab);
 let paused = reduced.matches;
 let active = null;
 let lastPortal = null;

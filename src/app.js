@@ -1,4 +1,4 @@
-import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, shouldEnhanceScene } from './model.js';
+import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, shouldEnhanceScene, transitionDirection } from './model.js';
 import { createStarfield } from './starfield.js';
 const $ = selector => document.querySelector(selector);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -25,6 +25,7 @@ function applyMotion() {
 }
 function renderRoom(id, { focus = false, updateURL = false } = {}) {
   const project = selectProject(id);
+  const direction=transitionDirection(active,project?.id);station.dataset.transition=direction;
   active = project?.id ?? null;
   for (const portal of portals) {
     const current = portal.dataset.room === active;
@@ -39,7 +40,7 @@ function renderRoom(id, { focus = false, updateURL = false } = {}) {
   $('#room-link').href = project?.url ?? 'https://github.com/manojPragada';
   $('#room-link').textContent = project ? 'Open project repository ↗' : 'Explore GitHub ↗';
   $('#room-controls').hidden = !project;
-  $('#navigation-status').textContent = project ? `${project.title} room selected.` : 'Station overview.';
+  $('#navigation-status').textContent = project ? `${project.title} room selected via ${direction} camera transition.` : 'Station overview.';
   applyMotion();
   if (updateURL) {
     const url = new URL(location.href);

@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-10-27: Added deterministic camera-transition direction state for overview entry and room-to-room travel, exposed to the scene and assistive status without changing reduced-motion behavior. Next: use this state for a short, interruptible corridor reveal after browser QA is available.
+
 2026-10-26: Moved KINETIC into semantic markup so the complete fictional design lab remains discoverable without JavaScript. Next: deepen room transitions without weakening no-script and reduced-motion paths.
 
 2026-10-25: Added KINETIC, a standalone fictional creative-studio study with original CSS poster art, maximalist responsive layout and explicit non-client/non-project labeling. The three-showcase design lab is complete. Next: link it from the portfolio surface, then deepen room transitions without weakening reduced-motion fallbacks.

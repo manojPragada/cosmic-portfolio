@@ -1,0 +1,2 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {transitionDirection} from '../src/model.js';
+test('room transition direction is deterministic',()=>{assert.equal(transitionDirection(null,'pufferfish'),'forward');assert.equal(transitionDirection('pufferfish','queue'),'right');assert.equal(transitionDirection('queue','pufferfish'),'left');assert.equal(transitionDirection('queue',null),'overview');});

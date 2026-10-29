@@ -1,4 +1,4 @@
-import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, shouldEnhanceScene, transitionDirection } from './model.js';
+import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, shouldEnhanceScene, transitionPlan } from './model.js';
 import { createStarfield } from './starfield.js';
 const $ = selector => document.querySelector(selector);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -7,6 +7,7 @@ const station = $('#station');
 let paused = reduced.matches;
 let active = null;
 let lastPortal = null;
+let transitionTimer = null;
 const canvas=document.createElement('canvas');canvas.id='webgl-stars';canvas.className='webgl-stars';canvas.setAttribute('aria-hidden','true');station.prepend(canvas);
 let starfield=null;
 if(shouldEnhanceScene({reducedMotion:reduced.matches,width:innerWidth,deviceMemory:navigator.deviceMemory??null,webgl:Boolean(window.WebGLRenderingContext)})){
@@ -25,7 +26,9 @@ function applyMotion() {
 }
 function renderRoom(id, { focus = false, updateURL = false } = {}) {
   const project = selectProject(id);
-  const direction=transitionDirection(active,project?.id);station.dataset.transition=direction;
+  const plan=transitionPlan(active,project?.id,{reducedMotion:reduced.matches,paused});const direction=plan.direction;
+  clearTimeout(transitionTimer);station.classList.remove('traveling');station.dataset.transition=direction;
+  if(plan.duration){station.classList.add('traveling');transitionTimer=setTimeout(()=>station.classList.remove('traveling'),plan.duration);}
   active = project?.id ?? null;
   for (const portal of portals) {
     const current = portal.dataset.room === active;

@@ -1,2 +1,3 @@
-import {test} from 'node:test';import assert from 'node:assert/strict';import {transitionDirection} from '../src/model.js';
+import {test} from 'node:test';import assert from 'node:assert/strict';import {transitionDirection,transitionPlan} from '../src/model.js';
 test('room transition direction is deterministic',()=>{assert.equal(transitionDirection(null,'pufferfish'),'forward');assert.equal(transitionDirection('pufferfish','queue'),'right');assert.equal(transitionDirection('queue','pufferfish'),'left');assert.equal(transitionDirection('queue',null),'overview');});
+test('transition plan disables corridor motion when paused or reduced',()=>{assert.deepEqual(transitionPlan('pufferfish','recorder'),{direction:'right',duration:560});assert.equal(transitionPlan('pufferfish','recorder',{reducedMotion:true}).duration,0);assert.equal(transitionPlan('pufferfish','recorder',{paused:true}).duration,0);});

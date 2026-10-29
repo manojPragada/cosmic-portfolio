@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-10-28: Added a short, interruptible direction-aware corridor-light reveal for room travel. Paused and reduced-motion states receive the same navigation and status update with no reveal. Next: visually tune the effect when browser QA is available.
+
 2026-10-27: Added deterministic camera-transition direction state for overview entry and room-to-room travel, exposed to the scene and assistive status without changing reduced-motion behavior. Next: use this state for a short, interruptible corridor reveal after browser QA is available.
 
 2026-10-26: Moved KINETIC into semantic markup so the complete fictional design lab remains discoverable without JavaScript. Next: deepen room transitions without weakening no-script and reduced-motion paths.

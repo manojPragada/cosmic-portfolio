@@ -38,5 +38,6 @@ export function shouldEnhanceScene({reducedMotion=false,width=0,deviceMemory=nul
   return !reducedMotion&&webgl&&Number.isFinite(width)&&width>=800&&(deviceMemory===null||deviceMemory>=4);
 }
 export function transitionDirection(from,to){const a=projects.findIndex(project=>project.id===from),b=projects.findIndex(project=>project.id===to);if(b<0)return 'overview';if(a<0)return 'forward';return b===a?'hold':b>a?'right':'left';}
+export function transitionPlan(from,to,{reducedMotion=false,paused=false}={}){const direction=transitionDirection(from,to);return {direction,duration:reducedMotion||paused||direction==='hold'?0:560};}
 
 

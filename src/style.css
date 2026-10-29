@@ -18,4 +18,8 @@
 .paused .station>.planet,.paused .station>.orbit-line{transform:none;transition:none}
 @media(pointer:coarse){.station>.planet,.station>.orbit-line{transform:none}}
 .webgl-stars{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.72}.scene,.station-bottom{z-index:1}.scene{position:absolute}
+.station::after{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;background:linear-gradient(90deg,transparent 0 14%,color-mix(in srgb,var(--room-color,#77f4d2) 35%,transparent) 48%,#eaffffcc 50%,transparent 86%);transform:translateX(-110%)}
+.station.traveling[data-transition=right]::after,.station.traveling[data-transition=forward]::after{animation:corridor-right .56s ease-out}
+.station.traveling[data-transition=left]::after,.station.traveling[data-transition=overview]::after{animation:corridor-left .56s ease-out}
+@keyframes corridor-right{30%{opacity:.9}to{opacity:0;transform:translateX(110%)}}@keyframes corridor-left{from{transform:translateX(110%)}30%{opacity:.9}to{opacity:0;transform:translateX(-110%)}}
 

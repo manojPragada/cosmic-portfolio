@@ -39,5 +39,6 @@ export function shouldEnhanceScene({reducedMotion=false,width=0,deviceMemory=nul
 }
 export function transitionDirection(from,to){const a=projects.findIndex(project=>project.id===from),b=projects.findIndex(project=>project.id===to);if(b<0)return 'overview';if(a<0)return 'forward';return b===a?'hold':b>a?'right':'left';}
 export function transitionPlan(from,to,{reducedMotion=false,paused=false}={}){const direction=transitionDirection(from,to);return {direction,duration:reducedMotion||paused||direction==='hold'?0:560};}
+export function transitionAnnouncement(title,plan){if(!title)return 'Station overview.';return plan.duration?`${title} room selected via ${plan.direction} corridor transition.`:`${title} room selected without motion.`;}
 
 

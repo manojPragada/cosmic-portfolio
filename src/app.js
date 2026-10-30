@@ -1,4 +1,4 @@
-import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, shouldEnhanceScene, transitionPlan } from './model.js';
+import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, shouldEnhanceScene, transitionPlan, transitionAnnouncement } from './model.js';
 import { createStarfield } from './starfield.js';
 const $ = selector => document.querySelector(selector);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -28,7 +28,7 @@ function renderRoom(id, { focus = false, updateURL = false } = {}) {
   const project = selectProject(id);
   const plan=transitionPlan(active,project?.id,{reducedMotion:reduced.matches,paused});const direction=plan.direction;
   clearTimeout(transitionTimer);station.classList.remove('traveling');station.dataset.transition=direction;
-  if(plan.duration){station.classList.add('traveling');transitionTimer=setTimeout(()=>station.classList.remove('traveling'),plan.duration);}
+  station.setAttribute('aria-busy',String(Boolean(plan.duration)));if(plan.duration){station.classList.add('traveling');transitionTimer=setTimeout(()=>{station.classList.remove('traveling');station.setAttribute('aria-busy','false');},plan.duration);}
   active = project?.id ?? null;
   for (const portal of portals) {
     const current = portal.dataset.room === active;
@@ -43,7 +43,7 @@ function renderRoom(id, { focus = false, updateURL = false } = {}) {
   $('#room-link').href = project?.url ?? 'https://github.com/manojPragada';
   $('#room-link').textContent = project ? 'Open project repository ↗' : 'Explore GitHub ↗';
   $('#room-controls').hidden = !project;
-  $('#navigation-status').textContent = project ? `${project.title} room selected via ${direction} camera transition.` : 'Station overview.';
+  $('#navigation-status').textContent = transitionAnnouncement(project?.title,plan);
   applyMotion();
   if (updateURL) {
     const url = new URL(location.href);

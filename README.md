@@ -18,7 +18,7 @@ Open http://127.0.0.1:8000. Keep the terminal running; Ctrl+C stops it. Serve ov
 
 ## Controls
 
-Select a project portal to reveal its details and GitHub link. While a portal is focused, use Left/Right to move spatially between portals or Home/End to jump to the first/last portal; Enter opens the focused room. Use Previous/Next room to cycle destinations, Return to station or Escape to exit, and browser Back/Forward to retrace selections. A `?room=queue` URL opens a known room directly. Modified clicks retain ordinary link behavior. Pause ambience stops decorative motion and camera transforms; reduced-motion preferences override animation, including changes made while the page is open. Conventional project links work without JavaScript.
+Select a project portal to reveal its details and GitHub link. While a portal is focused, use Left/Right to move spatially between portals or Home/End to jump to the first/last portal; Enter opens the focused room. Use Previous/Next room to cycle destinations, Return to station or Escape to exit, and browser Back/Forward to retrace selections. A `?room=queue` URL opens a known room directly. Direction-aware light sweeps and nested corridor frames deepen room travel without delaying navigation. Modified clicks retain ordinary link behavior. Pause ambience stops decorative motion and camera transforms; reduced-motion preferences override all corridor animation, including changes made while the page is open. Conventional project links work without JavaScript.
 
 ## Project structure
 

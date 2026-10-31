@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-10-30: Added three nested, direction-aware corridor frames behind the existing light sweep for a stronger room-travel illusion. They remain decorative, interruptible, mobile-scaled and fully absent when motion is paused or reduced. Next: browser-tune frame depth and contrast when Chromium is available.
+
 2026-10-29: Added interruptible `aria-busy` transition state and accurate motion/no-motion announcements so reduced-motion navigation never claims an animation occurred. Next: visually tune corridor depth when browser QA is available.
 
 2026-10-28: Added a short, interruptible direction-aware corridor-light reveal for room travel. Paused and reduced-motion states receive the same navigation and status update with no reveal. Next: visually tune the effect when browser QA is available.

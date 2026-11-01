@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-10-31: Added a contained scanner halo to hovered, focused and selected project portals. It is decorative, preserves the link hit area, scales on mobile and becomes static when ambience is paused or motion is reduced. Next: browser-tune halo and corridor contrast when Chromium is available.
+
 2026-10-30: Added three nested, direction-aware corridor frames behind the existing light sweep for a stronger room-travel illusion. They remain decorative, interruptible, mobile-scaled and fully absent when motion is paused or reduced. Next: browser-tune frame depth and contrast when Chromium is available.
 
 2026-10-29: Added interruptible `aria-busy` transition state and accurate motion/no-motion announcements so reduced-motion navigation never claims an animation occurred. Next: visually tune corridor depth when browser QA is available.

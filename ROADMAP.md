@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-11-01: Layered two segmented energy sweeps and an inset glow into the portal scanner halo, strengthening the holographic read without adding DOM, dependencies or hit-area changes. Paused and reduced-motion fallbacks remain static. Next: browser-tune scanner contrast when Chromium is available.
+
 2026-10-31: Added a contained scanner halo to hovered, focused and selected project portals. It is decorative, preserves the link hit area, scales on mobile and becomes static when ambience is paused or motion is reduced. Next: browser-tune halo and corridor contrast when Chromium is available.
 
 2026-10-30: Added three nested, direction-aware corridor frames behind the existing light sweep for a stronger room-travel illusion. They remain decorative, interruptible, mobile-scaled and fully absent when motion is paused or reduced. Next: browser-tune frame depth and contrast when Chromium is available.

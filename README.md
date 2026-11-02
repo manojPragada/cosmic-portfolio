@@ -4,6 +4,8 @@ A space-station-inspired portfolio with CSS 3D project portals, illuminated holo
 
 **Status:** working static prototype, no hosted deployment. See limitations below. This project uses no external assets, fonts, runtime dependencies, API keys or paid services.
 
+Current visual increment: the contained portal scanner uses segmented energy sweeps and inset glow while remaining static when ambience is paused or reduced motion is requested.
+
 ## Quick start
 
 Prerequisites: Python 3 for a local static server; Node.js 20+ for tests.

@@ -4,7 +4,7 @@ A space-station-inspired portfolio with CSS 3D project portals, illuminated holo
 
 **Status:** working static prototype, no hosted deployment. See limitations below. This project uses no external assets, fonts, runtime dependencies, API keys or paid services.
 
-Current visual increment: the contained portal scanner uses segmented energy sweeps and inset glow while remaining static when ambience is paused or reduced motion is requested.
+Current visual increment: each portal projects a contained holographic light volume and landing ring behind its project glyph, with static paused and reduced-motion states.
 
 ## Quick start
 

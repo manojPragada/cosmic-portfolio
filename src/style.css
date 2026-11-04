@@ -25,6 +25,13 @@
 @media(max-width:700px){.hologram::before{width:82px;height:108px}.hologram::after{width:66px}}
 @media(prefers-reduced-motion:reduce){.hologram::before{animation:none!important}.hologram::before,.hologram::after{opacity:.28}}
 
+/* Fine scanlines make the portal glass read as a projected surface, not a flat card. */
+.portal{background-image:repeating-linear-gradient(180deg,transparent 0 5px,color-mix(in srgb,var(--glow) 7%,transparent) 6px),linear-gradient(180deg,#112b36aa,#080d18ee);background-size:100% 12px,100% 100%}
+.portal:hover,.portal:focus-visible,.portal.selected{animation:portal-data-flow 3.2s linear infinite}
+@keyframes portal-data-flow{to{background-position:0 24px,0 0}}
+.paused .portal{animation:none}.paused .portal.selected{background-position:0 12px,0 0}
+@media(prefers-reduced-motion:reduce){.portal{animation:none!important;background-position:0 12px,0 0}}
+
 /* Decorative 3D planes must never intercept room navigation clicks. */
 .floor,.ceiling-ring,.station-rail,.stars,.planet,.orbit-line,.station-bottom{pointer-events:none}
 

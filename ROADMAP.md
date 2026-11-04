@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-11-03: Added contained projected scanlines to focused, hovered and selected portal glass, strengthening the holographic material without extra DOM, assets or payload. Paused and reduced-motion states remain static. Next: browser-tune portal contrast and stacking when Chromium is available.
+
 2026-11-02: Added per-portal holographic light volumes and landing rings to deepen the station's focal planes without new assets or hit areas. Motion is contained to focused/selected portals and becomes static when paused or reduced motion is requested. Next: browser-tune glow contrast and stacking when Chromium is available.
 
 2026-11-01: Layered two segmented energy sweeps and an inset glow into the portal scanner halo, strengthening the holographic read without adding DOM, dependencies or hit-area changes. Paused and reduced-motion fallbacks remain static. Next: browser-tune scanner contrast when Chromium is available.

@@ -32,6 +32,10 @@
 .paused .portal{animation:none}.paused .portal.selected{background-position:0 12px,0 0}
 @media(prefers-reduced-motion:reduce){.portal{animation:none!important;background-position:0 12px,0 0}}
 
+/* Opposing inset edge lights give focused portal glass a translucent 3D rim. */
+.portal:hover,.portal:focus-visible,.portal.selected{box-shadow:0 0 50px color-mix(in srgb,var(--glow) 25%,transparent),inset 22px 0 34px color-mix(in srgb,var(--glow) 12%,transparent),inset -16px 0 30px #dffcff0b}
+.paused .portal.selected{box-shadow:0 0 34px color-mix(in srgb,var(--glow) 18%,transparent),inset 18px 0 30px color-mix(in srgb,var(--glow) 10%,transparent)}
+
 /* Decorative 3D planes must never intercept room navigation clicks. */
 .floor,.ceiling-ring,.station-rail,.stars,.planet,.orbit-line,.station-bottom{pointer-events:none}
 

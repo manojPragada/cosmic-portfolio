@@ -4,7 +4,7 @@ A space-station-inspired portfolio with CSS 3D project portals, illuminated holo
 
 **Status:** working static prototype, no hosted deployment. See limitations below. This project uses no external assets, fonts, runtime dependencies, API keys or paid services.
 
-Current visual increment: opposing edge lights and projected scanlines give each portal a deeper translucent holographic surface, with static paused and reduced-motion states.
+Current visual increment: three color-matched ceiling light shafts place the holographic portals inside a shared volumetric room, while opposing edge lights and scanlines preserve their translucent material. Paused and reduced-motion states remain static.
 
 ## Quick start
 

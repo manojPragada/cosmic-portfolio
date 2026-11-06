@@ -36,6 +36,14 @@
 .portal:hover,.portal:focus-visible,.portal.selected{box-shadow:0 0 50px color-mix(in srgb,var(--glow) 25%,transparent),inset 22px 0 34px color-mix(in srgb,var(--glow) 12%,transparent),inset -16px 0 30px #dffcff0b}
 .paused .portal.selected{box-shadow:0 0 34px color-mix(in srgb,var(--glow) 18%,transparent),inset 18px 0 30px color-mix(in srgb,var(--glow) 10%,transparent)}
 
+/* Three soft ceiling shafts place the portals inside one shared volumetric room. */
+.portals::after{content:'';position:absolute;inset:-28% -2% 3%;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 18% 5%,#77f4d226 0 6%,transparent 42%),radial-gradient(ellipse at 50% 3%,#bca1ff2b 0 7%,transparent 44%),radial-gradient(ellipse at 82% 5%,#ffb77e24 0 6%,transparent 42%);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%);filter:blur(7px);opacity:.62;animation:station-light-breathe 5.8s ease-in-out infinite alternate}
+.portal{z-index:1}.portals::before{z-index:0}
+@keyframes station-light-breathe{to{opacity:.86;filter:blur(11px) saturate(1.25)}}
+.paused .portals::after{animation:none;opacity:.48;filter:blur(8px)}
+@media(max-width:700px){.portals::after{inset:-18% -8% 4%;opacity:.5}}
+@media(prefers-reduced-motion:reduce){.portals::after{animation:none!important;opacity:.48;filter:blur(8px)}}
+
 /* Decorative 3D planes must never intercept room navigation clicks. */
 .floor,.ceiling-ring,.station-rail,.stars,.planet,.orbit-line,.station-bottom{pointer-events:none}
 

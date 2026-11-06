@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-11-05: Added three color-matched ceiling light shafts behind the portal deck, giving the station a shared volumetric room without new markup, assets or hit areas. The ambience becomes static when paused or reduced motion is requested. Next: browser-tune shaft contrast and stacking when Chromium is available.
+
 2026-11-04: Added opposing inset edge lights to focused, hovered and selected portal glass, deepening the translucent 3D material without extra DOM, assets or motion. Paused and reduced-motion behavior remains intact. Next: browser-tune portal contrast and stacking when Chromium is available.
 
 2026-11-03: Added contained projected scanlines to focused, hovered and selected portal glass, strengthening the holographic material without extra DOM, assets or payload. Paused and reduced-motion states remain static. Next: browser-tune portal contrast and stacking when Chromium is available.

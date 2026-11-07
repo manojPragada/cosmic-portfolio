@@ -44,6 +44,13 @@
 @media(max-width:700px){.portals::after{inset:-18% -8% 4%;opacity:.5}}
 @media(prefers-reduced-motion:reduce){.portals::after{animation:none!important;opacity:.48;filter:blur(8px)}}
 
+/* Color pools reflected beneath each portal connect the ceiling shafts to the floor plane. */
+.floor{background-image:radial-gradient(ellipse at 30% 16%,#77f4d232 0 5%,transparent 22%),radial-gradient(ellipse at 50% 12%,#bca1ff32 0 6%,transparent 24%),radial-gradient(ellipse at 70% 16%,#ffb77e2b 0 5%,transparent 22%),linear-gradient(#4f8b9222 1px,transparent 1px),linear-gradient(90deg,#4f8b9222 1px,transparent 1px);background-size:auto,auto,auto,65px 65px,65px 65px;animation:floor-caustics 6.4s ease-in-out infinite alternate}
+@keyframes floor-caustics{to{opacity:.88;filter:saturate(1.24);background-position:1% 2%,-1% 3%,1% 2%,0 8px,8px 0}}
+.paused .floor{animation:none;opacity:.7;filter:none}
+@media(max-width:700px){.floor{background-image:radial-gradient(ellipse at 30% 14%,#77f4d226 0 5%,transparent 20%),radial-gradient(ellipse at 50% 12%,#bca1ff26 0 6%,transparent 22%),radial-gradient(ellipse at 70% 14%,#ffb77e22 0 5%,transparent 20%),linear-gradient(#4f8b9222 1px,transparent 1px),linear-gradient(90deg,#4f8b9222 1px,transparent 1px)}}
+@media(prefers-reduced-motion:reduce){.floor{animation:none!important;opacity:.7;filter:none}}
+
 /* Decorative 3D planes must never intercept room navigation clicks. */
 .floor,.ceiling-ring,.station-rail,.stars,.planet,.orbit-line,.station-bottom{pointer-events:none}
 

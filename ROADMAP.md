@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-11-07: Added a CSS-only orbital aurora and luminous horizon behind the station, with static paused/reduced-motion states and a lower-opacity mobile treatment. Next: profile the layered scene and optional WebGL starfield on a real low-power mobile browser.
+
 2026-11-06: Added three restrained, color-matched floor caustics beneath the holographic portals, with static paused/reduced-motion treatment and a softer mobile treatment. Next: profile the progressive WebGL starfield and corridor transitions on a representative low-power mobile device.
 
 2026-11-05: Added three color-matched ceiling light shafts behind the portal deck, giving the station a shared volumetric room without new markup, assets or hit areas. The ambience becomes static when paused or reduced motion is requested. Next: browser-tune shaft contrast and stacking when Chromium is available.

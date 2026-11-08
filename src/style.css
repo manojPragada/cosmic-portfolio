@@ -51,6 +51,14 @@
 @media(max-width:700px){.floor{background-image:radial-gradient(ellipse at 30% 14%,#77f4d226 0 5%,transparent 20%),radial-gradient(ellipse at 50% 12%,#bca1ff26 0 6%,transparent 22%),radial-gradient(ellipse at 70% 14%,#ffb77e22 0 5%,transparent 20%),linear-gradient(#4f8b9222 1px,transparent 1px),linear-gradient(90deg,#4f8b9222 1px,transparent 1px)}}
 @media(prefers-reduced-motion:reduce){.floor{animation:none!important;opacity:.7;filter:none}}
 
+/* A distant orbital aurora adds atmospheric depth behind the station without a new asset or render loop. */
+.stars::before{content:'';position:absolute;left:-12%;right:-12%;top:18%;height:44%;border-radius:50%;background:radial-gradient(ellipse at 50% 100%,transparent 0 50%,#77f4d21f 55%,#a78bfa16 62%,transparent 72%);filter:blur(10px);opacity:.7;transform:rotate(-4deg);animation:orbital-aurora 8s ease-in-out infinite alternate}
+.stars::after{content:'';position:absolute;left:4%;right:4%;top:31%;height:1px;background:linear-gradient(90deg,transparent,#77f4d252,#bca1ff5c,#ffb77e42,transparent);box-shadow:0 0 24px #77f4d233;opacity:.62;transform:rotate(-4deg)}
+@keyframes orbital-aurora{to{opacity:.94;filter:blur(16px) saturate(1.2);transform:rotate(-3deg) translateY(6px)}}
+.paused .stars::before{animation:none;opacity:.58;filter:blur(12px)}
+@media(max-width:700px){.stars::before{opacity:.42;filter:blur(13px)}.stars::after{opacity:.38}}
+@media(prefers-reduced-motion:reduce){.stars::before{animation:none!important;opacity:.58;filter:blur(12px)}}
+
 /* Decorative 3D planes must never intercept room navigation clicks. */
 .floor,.ceiling-ring,.station-rail,.stars,.planet,.orbit-line,.station-bottom{pointer-events:none}
 

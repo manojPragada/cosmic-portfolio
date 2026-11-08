@@ -4,7 +4,7 @@ A space-station-inspired portfolio with CSS 3D project portals, illuminated holo
 
 **Status:** working static prototype, no hosted deployment. See limitations below. This project uses no external assets, fonts, runtime dependencies, API keys or paid services.
 
-Current visual increment: color-matched floor caustics now connect the three holographic portals to their ceiling light shafts, strengthening the shared 3D room without adding assets or intercepting navigation. Paused, mobile and reduced-motion states remain restrained or static.
+Current visual increment: a CSS-only orbital aurora and horizon line now deepen the view behind the station without adding an asset or render loop. Paused and reduced-motion states are static, while the mobile treatment stays deliberately restrained.
 
 ## Quick start
 

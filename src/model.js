@@ -34,8 +34,13 @@ export function portalIndexForKey(current, key, count = projects.length) {
   if (key === 'ArrowRight') return (current + 1) % count;
   return null;
 }
-export function shouldEnhanceScene({reducedMotion=false,width=0,deviceMemory=null,webgl=true}={}) {
-  return !reducedMotion&&webgl&&Number.isFinite(width)&&width>=800&&(deviceMemory===null||deviceMemory>=4);
+export function sceneTier({reducedMotion=false,width=0,deviceMemory=null,saveData=false}={}) {
+  if (reducedMotion) return 'still';
+  if (saveData || !Number.isFinite(width) || width < 800 || (deviceMemory !== null && deviceMemory < 4)) return 'lite';
+  return 'full';
+}
+export function shouldEnhanceScene({webgl=true,...signals}={}) {
+  return webgl && sceneTier(signals) === 'full';
 }
 export function transitionDirection(from,to){const a=projects.findIndex(project=>project.id===from),b=projects.findIndex(project=>project.id===to);if(b<0)return 'overview';if(a<0)return 'forward';return b===a?'hold':b>a?'right':'left';}
 export function transitionPlan(from,to,{reducedMotion=false,paused=false}={}){const direction=transitionDirection(from,to);return {direction,duration:reducedMotion||paused||direction==='hold'?0:560};}

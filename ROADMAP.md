@@ -16,6 +16,8 @@
 
 ## Continuity
 
+2026-11-08: Added a tested `full`/`lite`/`still` scene tier. Narrow, low-memory and data-saver devices now retain the complete station with static, lower-density CSS ambience and never create the optional WebGL starfield. Next: profile these tiers on a representative low-power mobile browser when browser tooling is available.
+
 2026-11-07: Added a CSS-only orbital aurora and luminous horizon behind the station, with static paused/reduced-motion states and a lower-opacity mobile treatment. Next: profile the layered scene and optional WebGL starfield on a real low-power mobile browser.
 
 2026-11-06: Added three restrained, color-matched floor caustics beneath the holographic portals, with static paused/reduced-motion treatment and a softer mobile treatment. Next: profile the progressive WebGL starfield and corridor transitions on a representative low-power mobile device.

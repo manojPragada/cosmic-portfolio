@@ -59,6 +59,13 @@
 @media(max-width:700px){.stars::before{opacity:.42;filter:blur(13px)}.stars::after{opacity:.38}}
 @media(prefers-reduced-motion:reduce){.stars::before{animation:none!important;opacity:.58;filter:blur(12px)}}
 
+/* Constrained devices retain the complete station and links with quieter, cheaper ambience. */
+[data-scene-tier=lite] .stars::before,[data-scene-tier=lite] .portals::after,[data-scene-tier=lite] .floor,[data-scene-tier=lite] .hologram,[data-scene-tier=lite] .portal{animation:none!important}
+[data-scene-tier=lite] .stars::before{opacity:.44;filter:blur(10px)}
+[data-scene-tier=lite] .portals::after{opacity:.38;filter:blur(6px)}
+[data-scene-tier=lite] .floor{opacity:.64;filter:none}
+[data-scene-tier=lite] .hologram::before{filter:none;opacity:.24}
+
 /* Decorative 3D planes must never intercept room navigation clicks. */
 .floor,.ceiling-ring,.station-rail,.stars,.planet,.orbit-line,.station-bottom{pointer-events:none}
 

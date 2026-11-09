@@ -4,7 +4,7 @@ A space-station-inspired portfolio with CSS 3D project portals, illuminated holo
 
 **Status:** working static prototype, no hosted deployment. See limitations below. This project uses no external assets, fonts, runtime dependencies, API keys or paid services.
 
-Current visual increment: a CSS-only orbital aurora and horizon line now deepen the view behind the station without adding an asset or render loop. Paused and reduced-motion states are static, while the mobile treatment stays deliberately restrained.
+Current performance increment: a tested scene-tier gate now keeps the full layered ambience on capable screens, uses a quieter static CSS treatment on narrow, low-memory or data-saver devices, and retains the existing still reduced-motion experience. Project links and room navigation are identical in every tier.
 
 ## Quick start
 
@@ -65,7 +65,7 @@ Node's built-in test runner checks model behavior. The check script validates Ja
 
 ## Accessibility and performance
 
-Fine-pointer devices receive a subtle bounded perspective response and cursor-following station light. Wide, capable devices may also receive a dependency-free raw-WebGL depth starfield. It is created only at 800px+, with at least 4 GB device memory when that signal exists, WebGL support, and no reduced-motion preference. CSS stars are always the fallback. Pausing ambience stops rendering; project rooms remain ordinary links and the conventional archive remains available without JavaScript.
+Fine-pointer devices receive a subtle bounded perspective response and cursor-following station light. Wide, capable devices may also receive a dependency-free raw-WebGL depth starfield. It is created only at 800px+, with at least 4 GB device memory when that signal exists, WebGL support, no data-saver request and no reduced-motion preference. Narrow, low-memory and data-saver devices use static lower-density CSS ambience; CSS stars are always the fallback. Pausing ambience stops rendering; project rooms remain ordinary links and the conventional archive remains available without JavaScript.
 
 Semantic controls, visible keyboard focus, a skip link, responsive layouts and reduced-motion CSS are included. Decorative motion is pausable where present. No autoplay audio, analytics or external font requests. Browser-based interfaces require JavaScript except for the portfolio's conventional project links. An automated accessibility audit has not been completed.
 

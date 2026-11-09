@@ -1,4 +1,4 @@
-import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, shouldEnhanceScene, transitionPlan, transitionAnnouncement } from './model.js';
+import { selectProject, adjacentRoom, cameraFor, roomFromURL, stationTilt, portalIndexForKey, sceneTier, shouldEnhanceScene, transitionPlan, transitionAnnouncement } from './model.js';
 import { createStarfield } from './starfield.js';
 const $ = selector => document.querySelector(selector);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -10,7 +10,9 @@ let lastPortal = null;
 let transitionTimer = null;
 const canvas=document.createElement('canvas');canvas.id='webgl-stars';canvas.className='webgl-stars';canvas.setAttribute('aria-hidden','true');station.prepend(canvas);
 let starfield=null;
-if(shouldEnhanceScene({reducedMotion:reduced.matches,width:innerWidth,deviceMemory:navigator.deviceMemory??null,webgl:Boolean(window.WebGLRenderingContext)})){
+const sceneSignals={reducedMotion:reduced.matches,width:innerWidth,deviceMemory:navigator.deviceMemory??null,saveData:navigator.connection?.saveData===true};
+document.body.dataset.sceneTier=sceneTier(sceneSignals);
+if(shouldEnhanceScene({...sceneSignals,webgl:Boolean(window.WebGLRenderingContext)})){
   try{starfield=createStarfield(canvas);canvas.hidden=!starfield;}catch{canvas.hidden=true;}
 }else canvas.hidden=true;
 function applyMotion() {

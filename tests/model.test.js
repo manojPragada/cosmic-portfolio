@@ -1,4 +1,4 @@
-import {test} from 'node:test';import assert from 'node:assert/strict';import {projects,selectProject,adjacentRoom,cameraFor,roomFromURL,stationTilt,portalIndexForKey,shouldEnhanceScene} from '../src/model.js';
+import {test} from 'node:test';import assert from 'node:assert/strict';import {projects,selectProject,adjacentRoom,cameraFor,roomFromURL,stationTilt,portalIndexForKey,sceneTier,shouldEnhanceScene} from '../src/model.js';
 test('rooms resolve to distinct public project links',()=>{assert.equal(new Set(projects.map(p=>p.id)).size,3);for(const p of projects){assert.equal(selectProject(p.id),p);assert.ok(p.url.startsWith('https://github.com/manojPragada/'));}});
 test('unknown rooms do not resolve',()=>assert.equal(selectProject('unknown'),null));
 
@@ -9,5 +9,6 @@ test('deep links accept only known room identifiers',()=>{assert.equal(roomFromU
 test('station pointer tilt is centered, bounded and rejects invalid geometry',()=>{assert.deepEqual(stationTilt(50,50,100,100),{x:0,y:0});assert.deepEqual(stationTilt(1000,-100,100,100),{x:2.5,y:2.5});assert.deepEqual(stationTilt(1,1,0,100),{x:0,y:0});});
 test('spatial portal keyboard navigation wraps and supports boundaries',()=>{assert.equal(portalIndexForKey(0,'ArrowLeft',3),2);assert.equal(portalIndexForKey(2,'ArrowRight',3),0);assert.equal(portalIndexForKey(1,'Home',3),0);assert.equal(portalIndexForKey(1,'End',3),2);assert.equal(portalIndexForKey(1,'Enter',3),null);});
 test('WebGL enhancement respects motion, viewport and memory budgets',()=>{assert.equal(shouldEnhanceScene({width:1200,webgl:true}),true);assert.equal(shouldEnhanceScene({width:390,webgl:true}),false);assert.equal(shouldEnhanceScene({width:1200,webgl:true,reducedMotion:true}),false);assert.equal(shouldEnhanceScene({width:1200,webgl:true,deviceMemory:2}),false);});
+test('scene tier keeps constrained devices on a lightweight CSS treatment',()=>{assert.equal(sceneTier({width:1200}),'full');assert.equal(sceneTier({width:390}),'lite');assert.equal(sceneTier({width:1200,deviceMemory:2}),'lite');assert.equal(sceneTier({width:1200,saveData:true}),'lite');assert.equal(sceneTier({width:1200,reducedMotion:true}),'still');});
 
 

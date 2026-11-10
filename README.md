@@ -2,7 +2,7 @@
 
 An experimental developer portfolio for Sai Manoj Pragada, staged as an orbital systems station. The WebGL scene is progressive enhancement: the same verified public projects remain reachable through conventional semantic HTML navigation.
 
-**Status:** working foundation. The station, project holograms, adaptive camera movement, project console and static fallback are implemented. Project rooms and fictional company showcases are not implemented yet. There is no hosted demo.
+**Status:** working foundation. The station, project holograms, adaptive camera movement, project console, focus-managed project rooms and static fallback are implemented. Fictional company showcases are not implemented yet. There is no hosted demo.
 
 ## Quick start
 
@@ -29,6 +29,7 @@ npm run build
 ## Experience and accessibility
 
 - Project selection works through native buttons whether or not WebGL is available.
+- Project rooms use native modal dialogs, support Escape, restore focus and can be deep-linked with `#room/{project-id}`.
 - The “Use static view” control removes the live canvas without hiding content.
 - `prefers-reduced-motion` stops ambient station movement and camera interpolation.
 - Canvas density is capped at 1.5 device pixels and antialiasing is disabled to limit GPU cost.
@@ -43,9 +44,10 @@ No environment variables are required. `.env.example` records that contract. Pub
 
 ```text
 src/
-  components/       WebGL station and conventional project deck
+  components/       WebGL station, conventional project deck and project rooms
   data/             verified public project manifest and tests
   hooks/            motion preference integration
+  navigation/       validated project-room route helpers and tests
   App.tsx            portfolio composition and navigation state
   styles.css         responsive visual system and fallbacks
 ROADMAP.md           sequenced product work and continuity notes

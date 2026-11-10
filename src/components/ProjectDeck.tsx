@@ -1,12 +1,15 @@
+import type { RefObject } from 'react'
 import type { Project } from '../data/projects'
 
 type Props = {
   projects: readonly Project[]
   activeIndex: number
   onSelect: (index: number) => void
+  onEnterRoom: () => void
+  enterRoomRef: RefObject<HTMLButtonElement | null>
 }
 
-export function ProjectDeck({ projects, activeIndex, onSelect }: Props) {
+export function ProjectDeck({ projects, activeIndex, onSelect, onEnterRoom, enterRoomRef }: Props) {
   const active = projects[activeIndex]
   return (
     <section className="project-console" id="projects" aria-labelledby="projects-title">
@@ -21,7 +24,10 @@ export function ProjectDeck({ projects, activeIndex, onSelect }: Props) {
         <ul className="tech-list" aria-label="Project technologies">
           {active.stack.map((item) => <li key={item}>{item}</li>)}
         </ul>
-        <a className="repo-link" href={active.href} target="_blank" rel="noreferrer">Open public repository <span aria-hidden="true">↗</span></a>
+        <div className="project-actions">
+          <button ref={enterRoomRef} className="room-link" type="button" onClick={onEnterRoom}>Enter project room <span aria-hidden="true">→</span></button>
+          <a className="repo-link" href={active.href} target="_blank" rel="noreferrer">Open public repository <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
       <div className="deck-tabs" role="tablist" aria-label="Select a project">
         {projects.map((project, index) => (

@@ -7,6 +7,7 @@ import { SceneFallback } from './SceneFallback'
 type Props = {
   activeIndex: number
   reducedMotion: boolean
+  roomOpen: boolean
   onSelect: (index: number) => void
 }
 
@@ -26,12 +27,12 @@ function Stars() {
   )
 }
 
-function CameraRig({ activeIndex, reducedMotion }: Pick<Props, 'activeIndex' | 'reducedMotion'>) {
+function CameraRig({ activeIndex, reducedMotion, roomOpen }: Pick<Props, 'activeIndex' | 'reducedMotion' | 'roomOpen'>) {
   const { camera } = useThree()
   const target = useMemo(() => new THREE.Vector3(), [])
   useFrame((_, delta) => {
     const angle = (activeIndex - 1) * 0.28
-    target.set(Math.sin(angle) * 2.2, 1.25, 8.2 - Math.abs(activeIndex - 1) * 0.35)
+    target.set(Math.sin(angle) * (roomOpen ? 3.1 : 2.2), roomOpen ? 0.9 : 1.25, (roomOpen ? 5.4 : 8.2) - Math.abs(activeIndex - 1) * 0.35)
     if (reducedMotion) camera.position.copy(target)
     else camera.position.lerp(target, 1 - Math.exp(-delta * 2.8))
     camera.lookAt(0, 0.65, 0)
@@ -114,7 +115,7 @@ export default function StationScene(props: Props) {
         <fog attach="fog" args={['#060913', 10, 34]} />
         <ambientLight intensity={0.4} color="#89a8c8" />
         <directionalLight position={[3, 6, 4]} intensity={2.1} color="#d9efff" />
-        <CameraRig activeIndex={props.activeIndex} reducedMotion={props.reducedMotion} />
+        <CameraRig activeIndex={props.activeIndex} reducedMotion={props.reducedMotion} roomOpen={props.roomOpen} />
         <Stars />
         <Station {...props} />
       </Canvas>

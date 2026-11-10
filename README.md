@@ -2,7 +2,7 @@
 
 An experimental developer portfolio for Sai Manoj Pragada, staged as an orbital systems station. The WebGL scene is progressive enhancement: the same verified public projects remain reachable through conventional semantic HTML navigation.
 
-**Status:** working foundation. The station, project holograms, adaptive camera movement, project console, focus-managed project rooms and static fallback are implemented. Fictional company showcases are not implemented yet. There is no hosted demo.
+**Status:** working foundation. The station, project holograms, adaptive camera movement, cinematic room portals, focus-managed project rooms and static fallback are implemented. Fictional company showcases are not implemented yet. There is no hosted demo.
 
 ## Quick start
 

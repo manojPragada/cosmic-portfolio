@@ -40,7 +40,28 @@ function CameraRig({ activeIndex, reducedMotion, roomOpen }: Pick<Props, 'active
   return null
 }
 
-function Station({ activeIndex, reducedMotion, onSelect }: Props) {
+function RoomPortal({ accent, reducedMotion }: { accent: string; reducedMotion: boolean }) {
+  const rings = useRef<THREE.Group>(null)
+  useFrame((state, delta) => {
+    if (!reducedMotion && rings.current) {
+      rings.current.rotation.z += delta * 0.16
+      rings.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 1.4) * 0.025)
+    }
+  })
+  return (
+    <group position={[0, 0.05, -0.28]}>
+      <group ref={rings}>
+        <mesh><torusGeometry args={[1.12, 0.055, 10, 48]} /><meshStandardMaterial color={accent} emissive={accent} emissiveIntensity={3.2} /></mesh>
+        <mesh rotation={[0, 0, Math.PI / 3]}><torusGeometry args={[0.94, 0.018, 8, 48]} /><meshBasicMaterial color="#e9ffff" transparent opacity={0.7} /></mesh>
+        <mesh rotation={[0, 0, -Math.PI / 3]}><torusGeometry args={[0.76, 0.012, 8, 48]} /><meshBasicMaterial color={accent} transparent opacity={0.64} /></mesh>
+      </group>
+      <mesh position={[0, 0, -0.03]}><circleGeometry args={[1.05, 48]} /><meshBasicMaterial color={accent} transparent opacity={0.09} side={THREE.DoubleSide} /></mesh>
+      <spotLight position={[0, 1.8, 1.8]} target-position={[0, 0, 0]} color={accent} intensity={22} distance={6} angle={0.55} penumbra={0.8} />
+    </group>
+  )
+}
+
+function Station({ activeIndex, reducedMotion, roomOpen, onSelect }: Props) {
   const station = useRef<THREE.Group>(null)
   const core = useRef<THREE.Mesh>(null)
   useFrame((state, delta) => {
@@ -88,6 +109,7 @@ function Station({ activeIndex, reducedMotion, onSelect }: Props) {
               <cylinderGeometry args={[0.74, 0.9, 0.08, 28]} />
               <meshBasicMaterial color={projects[index].accent} transparent opacity={selected ? 0.72 : 0.24} />
             </mesh>
+            {selected && roomOpen && <RoomPortal accent={projects[index].accent} reducedMotion={reducedMotion} />}
           </group>
         )
       })}

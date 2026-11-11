@@ -8,6 +8,7 @@
 - [x] Respect reduced motion and cap adaptive render density
 - [x] Add focus-managed project rooms with deep-link route state and camera destinations
 - [x] Add cinematic, reduced-motion-aware room portal lighting
+- [x] Add animated core-to-project energy conduits with static reduced-motion framing
 
 ## Next
 
@@ -16,6 +17,8 @@
 - [ ] Create fictional showcase examples only after the core portfolio is stable
 
 ## Continuity
+
+2026-11-10: Added additive curved energy conduits from the station core to every project hologram, with selection emphasis and moving signal nodes that freeze under reduced motion. Next: add the verified repository metadata generator, then scene loading/performance telemetry.
 
 2026-11-09: Deepened room entry with layered emissive portal rings, a selected-project light cone and restrained ambient motion that freezes under reduced motion. Next: add the verified repository metadata generator, then scene loading/performance telemetry.
 

@@ -2,7 +2,7 @@
 
 An experimental developer portfolio for Sai Manoj Pragada, staged as an orbital systems station. The WebGL scene is progressive enhancement: the same verified public projects remain reachable through conventional semantic HTML navigation.
 
-**Status:** working foundation. The station, project holograms, adaptive camera movement, cinematic room portals, focus-managed project rooms and static fallback are implemented. Fictional company showcases are not implemented yet. There is no hosted demo.
+**Status:** working foundation. The station, project holograms, animated energy conduits, adaptive camera movement, cinematic room portals, focus-managed project rooms and static fallback are implemented. Fictional company showcases are not implemented yet. There is no hosted demo.
 
 ## Quick start
 
@@ -32,6 +32,7 @@ npm run build
 - Project rooms use native modal dialogs, support Escape, restore focus and can be deep-linked with `#room/{project-id}`.
 - The “Use static view” control removes the live canvas without hiding content.
 - `prefers-reduced-motion` stops ambient station movement and camera interpolation.
+- Project conduits use lightweight generated curves; their signal motion freezes to a representative frame when reduced motion is requested.
 - Canvas density is capped at 1.5 device pixels and antialiasing is disabled to limit GPU cost.
 - Skip navigation, visible focus styles, semantic sections and an `aria-live` project description support keyboard and assistive-technology use.
 - Mobile layouts collapse to one column and keep project links above the visual controls.
@@ -55,7 +56,7 @@ ROADMAP.md           sequenced product work and continuity notes
 
 ## Architecture
 
-React owns shared project selection state. `ProjectDeck` provides the primary accessible interface; the lazy-loaded `StationScene` mirrors that state into React Three Fiber for hologram emphasis and camera movement without placing Three.js in the initial application chunk. The scene is wrapped in an error boundary and Canvas fallback, and can be disabled by the visitor. No 3D model downloads or runtime network requests are required.
+React owns shared project selection state. `ProjectDeck` provides the primary accessible interface; the lazy-loaded `StationScene` mirrors that state into React Three Fiber for hologram emphasis, camera movement and generated core-to-project energy conduits without placing Three.js in the initial application chunk. The scene is wrapped in an error boundary and Canvas fallback, and can be disabled by the visitor. No 3D model downloads or runtime network requests are required.
 
 ## Data and asset credits
 

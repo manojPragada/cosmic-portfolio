@@ -61,6 +61,32 @@ function RoomPortal({ accent, reducedMotion }: { accent: string; reducedMotion: 
   )
 }
 
+function EnergyConduit({ destination, accent, selected, reducedMotion, offset }: { destination: [number, number, number]; accent: string; selected: boolean; reducedMotion: boolean; offset: number }) {
+  const signal = useRef<THREE.Mesh>(null)
+  const curve = useMemo(() => new THREE.CatmullRomCurve3([
+    new THREE.Vector3(0, 0.55, 0),
+    new THREE.Vector3(destination[0] * 0.42, 1.05 + Math.abs(destination[0]) * 0.08, destination[2] + 0.35),
+    new THREE.Vector3(...destination),
+  ]), [destination])
+  useFrame((state) => {
+    if (!signal.current) return
+    const progress = reducedMotion ? 0.72 : (state.clock.elapsedTime * 0.16 + offset) % 1
+    signal.current.position.copy(curve.getPointAt(progress))
+  })
+  return (
+    <group>
+      <mesh>
+        <tubeGeometry args={[curve, 48, selected ? 0.022 : 0.01, 6, false]} />
+        <meshBasicMaterial color={accent} transparent opacity={selected ? 0.72 : 0.18} blending={THREE.AdditiveBlending} depthWrite={false} />
+      </mesh>
+      <mesh ref={signal} scale={selected ? 1 : 0.58}>
+        <sphereGeometry args={[0.065, 10, 10]} />
+        <meshBasicMaterial color="#efffff" transparent opacity={selected ? 0.95 : 0.42} blending={THREE.AdditiveBlending} depthWrite={false} />
+      </mesh>
+    </group>
+  )
+}
+
 function Station({ activeIndex, reducedMotion, roomOpen, onSelect }: Props) {
   const station = useRef<THREE.Group>(null)
   const core = useRef<THREE.Mesh>(null)
@@ -91,6 +117,10 @@ function Station({ activeIndex, reducedMotion, roomOpen, onSelect }: Props) {
         <octahedronGeometry args={[0.78, 1]} />
         <meshStandardMaterial color="#6fffe9" emissive="#2ed8cb" emissiveIntensity={2.2} wireframe transparent opacity={0.86} />
       </mesh>
+      {projects.map((project, index) => {
+        const angle = (index - 1) * 0.72
+        return <EnergyConduit key={`${project.id}-conduit`} destination={[Math.sin(angle) * 3.2, 0.65, Math.cos(angle) * 0.3]} accent={project.accent} selected={index === activeIndex} reducedMotion={reducedMotion} offset={index / projects.length} />
+      })}
       {[0, 1, 2].map((index) => {
         const angle = (index - 1) * 0.72
         const selected = index === activeIndex

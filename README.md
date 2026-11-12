@@ -2,7 +2,7 @@
 
 An experimental developer portfolio for Sai Manoj Pragada, staged as an orbital systems station. The WebGL scene is progressive enhancement: the same verified public projects remain reachable through conventional semantic HTML navigation.
 
-**Status:** working foundation. The station, project holograms, animated energy conduits, adaptive camera movement, cinematic room portals, focus-managed project rooms and static fallback are implemented. Fictional company showcases are not implemented yet. There is no hosted demo.
+**Status:** working foundation. The station, project holograms, animated energy conduits, adaptive camera movement and render density, cinematic room portals, focus-managed project rooms and static fallback are implemented. Fictional company showcases are not implemented yet. There is no hosted demo.
 
 ## Quick start
 
@@ -34,7 +34,8 @@ npm run build
 - `prefers-reduced-motion` stops ambient station movement and camera interpolation.
 - Project conduits use lightweight generated curves; their signal motion freezes to a representative frame when reduced motion is requested.
 - Canvas density is capped at 1.5 device pixels and antialiasing is disabled to limit GPU cost.
-- Skip navigation, visible focus styles, semantic sections and an `aria-live` project description support keyboard and assistive-technology use.
+- Local frame-budget sampling lowers render density after sustained slow frames and restores it only after a faster hysteresis threshold. Timings never leave the browser.
+- Skip navigation, visible focus styles, semantic sections and `aria-live` project/scene status support keyboard and assistive-technology use. A failed WebGL context is reported as a static fallback rather than remaining in a loading state.
 - Mobile layouts collapse to one column and keep project links above the visual controls.
 
 ## Configuration
@@ -49,6 +50,7 @@ src/
   data/             verified public project manifest and tests
   hooks/            motion preference integration
   navigation/       validated project-room route helpers and tests
+  performance/      deterministic adaptive-render quality policy and tests
   App.tsx            portfolio composition and navigation state
   styles.css         responsive visual system and fallbacks
 ROADMAP.md           sequenced product work and continuity notes
@@ -56,7 +58,7 @@ ROADMAP.md           sequenced product work and continuity notes
 
 ## Architecture
 
-React owns shared project selection state. `ProjectDeck` provides the primary accessible interface; the lazy-loaded `StationScene` mirrors that state into React Three Fiber for hologram emphasis, camera movement and generated core-to-project energy conduits without placing Three.js in the initial application chunk. The scene is wrapped in an error boundary and Canvas fallback, and can be disabled by the visitor. No 3D model downloads or runtime network requests are required.
+React owns shared project selection state. `ProjectDeck` provides the primary accessible interface; the lazy-loaded `StationScene` mirrors that state into React Three Fiber for hologram emphasis, camera movement and generated core-to-project energy conduits without placing Three.js in the initial application chunk. A local 90-frame sampler adjusts canvas density between full and lite tiers with hysteresis, while an accessible status reports readiness without exposing raw timing data. The scene is wrapped in an error boundary and Canvas fallback, and can be disabled by the visitor. No 3D model downloads or runtime network requests are required.
 
 ## Data and asset credits
 

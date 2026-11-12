@@ -5,6 +5,7 @@ import { SceneFallback } from './components/SceneFallback'
 import { projects } from './data/projects'
 import { useReducedMotion } from './hooks/useReducedMotion'
 import { projectIdFromHash, roomHash } from './navigation/roomRoute'
+import type { SceneQuality } from './performance/sceneQuality'
 
 const StationScene = lazy(() => import('./components/StationScene'))
 
@@ -14,6 +15,7 @@ export default function App() {
   const [activeIndex, setActiveIndex] = useState(() => Math.max(0, projects.findIndex(({ id }) => id === initialRoomId)))
   const [roomId, setRoomId] = useState<string | null>(initialRoomId)
   const [sceneEnabled, setSceneEnabled] = useState(true)
+  const [sceneStatus, setSceneStatus] = useState<'loading' | 'unavailable' | SceneQuality>('loading')
   const enterRoomRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function App() {
       <main id="main">
         <section className="hero" id="top">
           <div className="scene" aria-hidden="true">
-            {sceneEnabled ? <Suspense fallback={<SceneFallback />}><StationScene activeIndex={activeIndex} reducedMotion={reducedMotion} roomOpen={Boolean(roomId)} onSelect={setActiveIndex} /></Suspense> : <SceneFallback />}
+            {sceneEnabled ? <Suspense fallback={<SceneFallback />}><StationScene activeIndex={activeIndex} reducedMotion={reducedMotion} roomOpen={Boolean(roomId)} onSelect={setActiveIndex} onQualityChange={setSceneStatus} onFailure={() => setSceneStatus('unavailable')} /></Suspense> : <SceneFallback />}
           </div>
           <div className="hero-copy">
             <p className="kicker"><span /> PORTFOLIO TRANSMISSION · TORONTO</p>
@@ -64,7 +66,7 @@ export default function App() {
             <p className="intro">Sai Manoj Pragada explores dependable developer tools through tactile interfaces, local-first workflows and cinematic web experiences.</p>
             <div className="hero-actions">
               <a href="#projects">Enter project deck</a>
-              <span>{reducedMotion ? 'Reduced motion respected' : 'Scene telemetry online'}</span>
+              <span role="status" aria-live="polite">{!sceneEnabled ? 'Static view active' : sceneStatus === 'unavailable' ? '3D unavailable · static fallback' : reducedMotion ? 'Reduced motion respected' : sceneStatus === 'loading' ? 'Initializing local scene' : `3D ready · ${sceneStatus} density`}</span>
             </div>
           </div>
           <div className="telemetry" aria-hidden="true"><span>STATION / 01</span><span>RENDER / ADAPTIVE</span><span>LINK / PUBLIC</span></div>

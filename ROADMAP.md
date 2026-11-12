@@ -9,14 +9,17 @@
 - [x] Add focus-managed project rooms with deep-link route state and camera destinations
 - [x] Add cinematic, reduced-motion-aware room portal lighting
 - [x] Add animated core-to-project energy conduits with static reduced-motion framing
+- [x] Add local frame-budget sampling with adaptive render density and accessible readiness status
 
 ## Next
 
 - [ ] Add verified repository metadata generation instead of a hand-maintained manifest
-- [ ] Add a lightweight loading sequence and scene performance telemetry
+- [ ] Add a lightweight visual loading sequence
 - [ ] Create fictional showcase examples only after the core portfolio is stable
 
 ## Continuity
+
+2026-11-11: Added a privacy-preserving 90-frame performance sampler that shifts canvas density between full and lite tiers with hysteresis, plus accessible local readiness and WebGL-fallback status. Next: generate verified repository metadata, then add a lightweight visual loading sequence.
 
 2026-11-10: Added additive curved energy conduits from the station core to every project hologram, with selection emphasis and moving signal nodes that freeze under reduced motion. Next: add the verified repository metadata generator, then scene loading/performance telemetry.
 

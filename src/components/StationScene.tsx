@@ -1,7 +1,8 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Component, useMemo, useRef, type ReactNode } from 'react'
+import { Component, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import * as THREE from 'three'
 import { projects } from '../data/projects'
+import { qualityForFrameBudget, type SceneQuality } from '../performance/sceneQuality'
 import { SceneFallback } from './SceneFallback'
 
 type Props = {
@@ -9,6 +10,30 @@ type Props = {
   reducedMotion: boolean
   roomOpen: boolean
   onSelect: (index: number) => void
+  onQualityChange?: (quality: SceneQuality) => void
+  onFailure?: () => void
+}
+
+function AdaptiveQuality({ onQualityChange }: Pick<Props, 'onQualityChange'>) {
+  const { setDpr } = useThree()
+  const [quality, setQuality] = useState<SceneQuality>('full')
+  const timing = useRef({ frames: 0, seconds: 0 })
+
+  useEffect(() => {
+    const density = quality === 'lite' ? 1 : Math.min(window.devicePixelRatio || 1, 1.5)
+    setDpr(density)
+    onQualityChange?.(quality)
+  }, [onQualityChange, quality, setDpr])
+
+  useFrame((_, delta) => {
+    timing.current.frames += 1
+    timing.current.seconds += delta
+    if (timing.current.frames < 90) return
+    const averageFrameMs = timing.current.seconds * 1000 / timing.current.frames
+    setQuality((current) => qualityForFrameBudget(current, averageFrameMs, timing.current.frames))
+    timing.current = { frames: 0, seconds: 0 }
+  })
+  return null
 }
 
 function Stars() {
@@ -153,20 +178,22 @@ function Station({ activeIndex, reducedMotion, roomOpen, onSelect }: Props) {
   )
 }
 
-class SceneBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+class SceneBoundary extends Component<{ children: ReactNode; onFailure?: () => void }, { failed: boolean }> {
   state = { failed: false }
   static getDerivedStateFromError() { return { failed: true } }
+  componentDidCatch() { this.props.onFailure?.() }
   render() { return this.state.failed ? <SceneFallback /> : this.props.children }
 }
 
 export default function StationScene(props: Props) {
   return (
-    <SceneBoundary>
+    <SceneBoundary onFailure={props.onFailure}>
       <Canvas dpr={[1, 1.5]} camera={{ position: [0, 1.25, 8.2], fov: 44, near: 0.1, far: 80 }} gl={{ antialias: false, powerPreference: 'high-performance', alpha: true }} fallback={<SceneFallback />}>
         <color attach="background" args={['#060913']} />
         <fog attach="fog" args={['#060913', 10, 34]} />
         <ambientLight intensity={0.4} color="#89a8c8" />
         <directionalLight position={[3, 6, 4]} intensity={2.1} color="#d9efff" />
+        <AdaptiveQuality onQualityChange={props.onQualityChange} />
         <CameraRig activeIndex={props.activeIndex} reducedMotion={props.reducedMotion} roomOpen={props.roomOpen} />
         <Stars />
         <Station {...props} />
